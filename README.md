@@ -6,6 +6,7 @@ EDIT_CHORDS.PY
 5) Also you can transpose the chords with the slider
 
 GETFROMURL.PY
+
 This script is only working with kithara.to site. It's a faster way to download and import folders with artists and song to Guitar Songs App. You must have an account to avoid human authentications
 1) Install chromedriver (https://chromedriver.chromium.org/downloads)
 2) Run getFromUrl.py file
