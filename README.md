@@ -1,7 +1,7 @@
 EDIT_CHORDS.PY
 1) Run edit_chords.py file
 2) Paste the text with the chords in the first box
-3) Πress the modify button to edit the text so that the guitar songs app can recognize the chords
+3) Press the modify button to edit the text so that the guitar songs app can recognize the chords
 4) Copy or Save to a txt file
 5) Also you can transpose the chords with the slider
 
