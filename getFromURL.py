@@ -10,6 +10,8 @@ from selenium.webdriver.common.by import By
 
 i = 0
 
+##
+
 
 # Insert brackets
 def insert_angle_brackets(line):
@@ -26,13 +28,8 @@ def initialize():
     global driver
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
     driver.get("https://kithara.to/login")
-<<<<<<< HEAD
     # driver.find_element(By.NAME, "loginName").send_keys("EMAIL")
     # driver.find_element(By.NAME, "loginPass").send_keys("PASSWORD")
-=======
-    #driver.find_element(By.NAME, "loginName").send_keys("YOUR_EMAIL")
-    #driver.find_element(By.NAME, "loginPass").send_keys("YOUR_PASSWORD")
->>>>>>> ee7a0d17189d0fba78e1ae8d395a6a95e23de5b1
     url_input.configure(state="normal")
     url_input.configure(placeholder_text="Enter Artist's URL")
     button_create.configure(state="normal")
