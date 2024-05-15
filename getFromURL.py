@@ -8,10 +8,6 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 
-i = 0
-
-##
-
 
 # Insert brackets
 def insert_angle_brackets(line):
@@ -36,8 +32,8 @@ def initialize():
     button_clear_url.configure(state="normal")
 
 
-# Get the URL from the user
-def url_create(url, title, rating):
+# Create txt file
+def url_create(url, rating):
 
     global i
     driver.get(url)
@@ -69,6 +65,7 @@ def url_create(url, title, rating):
     return None
 
 
+# Keep only the best ratings
 def keep_best_ratings(anchor_elements):
 
     title_list = []
@@ -123,57 +120,54 @@ def keep_best_ratings(anchor_elements):
         final_list.append(element)
         rating_list.append(rating)
         title_list.append(title)
-        print(f"{title} in title_list")
+
         # Keeping the best rating
         index = title_list.index(title)
-        print(f" {rating_list[index]} COMPARED WITH {rating}")
+
         if (rating < 2) & (rating != 0):
-            print(f"ΑΦΑΙΡΕΣΗ < 1.5 {final_list[len(final_list) - 1].text}\n")
+
             final_list.pop()
             title_list.pop()
             rating_list.pop()
         elif rating_list[index] < rating:
-            print(f"ΑΦΑΙΡΕΣΗ < rating {final_list[index].text}\n")
+
             final_list.pop(index)
             title_list.pop(index)
             rating_list.pop(index)
         elif rating_list[index] > rating:
-            print(f"ΑΦΑΙΡΕΣΗ > rating {final_list[len(final_list) - 1].text}\n")
+
             final_list.pop()
             title_list.pop()
             rating_list.pop()
         else:
             if title_list.count(title) > 1:
-                print(f"ΑΦΑΙΡΕΣΗ == rating {final_list[len(final_list) - 1].text}\n")
+
                 final_list.pop()
                 title_list.pop()
                 rating_list.pop()
 
-    for i in range(len(final_list)):
-        print(f"TITLE {final_list[i].text}")
-
-    return final_list, title_list, rating_list
+    return final_list, rating_list
 
 
 # Get Url and elements
 def get_url():
-    global i
-    i = 0
+
     url = url_input.get()
     driver.get(url)
 
     url_elements = driver.find_element(By.CLASS_NAME, "tablerev")
     thistfist = url_elements.find_element(By.CLASS_NAME, "thist2col")
     anchor_elements = thistfist.find_elements(By.TAG_NAME, "a")
+
     if best_rating_check_box.get() == 1:
-        best_Rating_list, title_list, rating_list = keep_best_ratings(anchor_elements)
+        best_Rating_list, rating_list = keep_best_ratings(anchor_elements)
         hrefs = [element.get_attribute("href") for element in best_Rating_list]
     else:
         hrefs = [element.get_attribute("href") for element in anchor_elements]
 
     i = 0
     for url in hrefs:
-        url_create(url, title_list[i], rating_list[i])
+        url_create(url, rating_list[i])
         i += 1
 
 
