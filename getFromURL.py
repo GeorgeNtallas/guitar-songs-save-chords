@@ -226,7 +226,7 @@ url_input.place(relx=0.5, rely=0.50, anchor=tk.CENTER)
 # Save Button
 button_create = customtkinter.CTkButton(
     master=root,
-    text="Save rampelstinskin",
+    text="Save Chords",
     command=get_url,
     width=100,
     height=25,
